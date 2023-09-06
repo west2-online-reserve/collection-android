@@ -25,7 +25,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'go' ]
+        language: [ 'java','kotlin' ]
 
     steps:
     - name: Checkout repository
