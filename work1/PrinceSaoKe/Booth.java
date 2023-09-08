@@ -49,9 +49,10 @@ public class Booth {
         this.isClosed = isClosed;
     }
 
-    public Boolean sale(int number) {
+    private Boolean sale(int number) {
         if (number <= 0) {
-            System.out.println("卖西瓜的数量必须是正数！");
+            System.out.println("交易数量必须是正数！");
+            return false;
         }
 
         if (isClosed) {
@@ -61,16 +62,12 @@ public class Booth {
             System.out.println("购买西瓜数大于在售西瓜数！");
             return false;
         } else {
-            // tota -= number;
+            tota -= number;
             return true;
         }
     }
 
     public static Boolean purchase(Booth booth, int number) {
-        if (number <= 0) {
-            System.out.println("购买西瓜的数量必须是正数！");
-            return false;
-        }
         if (booth.sale(number)) {
             System.out.println("交易成功！");
             return true;
@@ -96,8 +93,11 @@ public class Booth {
 
     public static void closeBooths(Booth[] booths) {
         for (Booth booth : booths) {
-            booth.setIsClosed(true);
-            System.out.println(booth.toString());
+            if (booth.getIsClosed()) {
+                System.out.println(booth.toString());
+            } else {
+                booth.setIsClosed(true);
+            }
         }
     }
 }
