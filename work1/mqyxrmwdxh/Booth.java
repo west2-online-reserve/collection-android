@@ -5,7 +5,6 @@ public class Booth {
     private String name;
     private int total;
     private boolean isClosed;
-    Booth() {}
     Booth(long id, String name, int total, boolean isClosed) {
         this.id = id;
         this.name = name;
