@@ -1,3 +1,25 @@
+public class task1 {
+    public static void main(String[] args){
+        Booth booth1 = new Booth(1000,"xiaoming",150,false);
+        Booth booth2 = new Booth(1001,"xiaohoong",100,true);
+        Booth[] booths = {booth1,booth2};
+
+        System.out.println(booth1);
+        System.out.println(booth2);
+
+        booth1.restock(-1);
+        booth1.restock(201);
+        booth1.restock(50);
+
+        Booth.purchase(booth1,-1);
+        Booth.purchase(booth1,201);
+        Booth.purchase(booth1,50);
+        Booth.purchase(booth2,50);
+
+        Booth.closeBooths(booths);
+        Booth.purchase(booth1,50);
+    }
+}
 class Booth {
 
     private long id;
@@ -5,8 +27,6 @@ class Booth {
     private int total;
     private boolean isClosed;
 
-    public Booth() {
-    }
 
     public Booth(long id, String name, int total, boolean isClosed){
         this.id=id;
@@ -32,7 +52,7 @@ class Booth {
     public static void closeBooths(Booth[] booths){
         for(Booth i: booths){
             if(i.isClosed){
-                System.out.println(i.toString());
+                System.out.println(i);
             }else {
                 i.isClosed=true;
             }
@@ -40,7 +60,7 @@ class Booth {
     }
 
 
-
+    @Override
     public String toString() {
         return "\n id:"+this.id+"\n name:"+this.name+"\n total:"+this.total+"\n isClosed:"+this.isClosed+"\n";
     }
