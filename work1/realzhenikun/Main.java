@@ -51,9 +51,15 @@ public class Main {
         booths[0].restock(0);
         System.out.println("**********");
 
+        /*更改*/
+        
         //closeBooths方法测试
         MelonBooth.closeBooths(booths);
         System.out.println("**********");
+        MelonBooth.closeBooths(booths);
+        for (MelonBooth mb : booths) {
+            mb.setIsClosed(false);
+        }
         MelonBooth.closeBooths(booths);
     }
 }
