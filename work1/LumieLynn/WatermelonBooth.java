@@ -1,5 +1,4 @@
 package LumieLynn;
-
 public class WatermelonBooth {
 	private long id;
     private String name;
@@ -45,6 +44,7 @@ public class WatermelonBooth {
         this.isClosed = isClosed;
     }
 
+    @Override
     public String toString() {
         return "ID:"+ getId() + " " + "Name:" + getName() + " " + "Total:" + getTotal() + " " + "IsClosed:" + getIsClosed();
     }
@@ -52,14 +52,11 @@ public class WatermelonBooth {
     public static void purchase(WatermelonBooth watermelonBooth,int num) {
         if (num<=0) {
             System.out.println("You cannot buy watermelon with a negative quantity.");
-        }
-        else if(watermelonBooth.isClosed) {
+        } else if(watermelonBooth.isClosed) {
             System.out.println(watermelonBooth.name + " is closed!");
-        }
-        else if(num > watermelonBooth.total) {
+        } else if(num > watermelonBooth.total) {
             System.out.println("The number of watermelons you bought exceeds the number of watermelons available in the store.");
-        }
-        else {
+        } else {
             System.out.println(watermelonBooth.name + " sold " + num + " watermelon(s)!");
             watermelonBooth.total-=num;
         }
@@ -68,11 +65,9 @@ public class WatermelonBooth {
     public void restock(int add) {
         if (add > 200) {
             System.out.println("The stocking up amount should't exceed 200.");
-        }
-        if (add < 0) {
+        } else if (add < 0) {
             System.out.println("Hey, you're stocking up...");
-        }
-        else {
+        } else {
             total+=add;
             System.out.println(name + "'ve stock up " + add + " watermelon(s).");
         }
@@ -81,9 +76,8 @@ public class WatermelonBooth {
     public static void closeBooths(WatermelonBooth[] booths){
         for (WatermelonBooth booth:booths) {
             if (booth.getIsClosed()){
-                System.out.println(booth.toString());
-            }
-            else {
+                System.out.println(booth);
+            } else {
                 booth.isClosed = true;
             }
         }
