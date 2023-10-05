@@ -35,6 +35,7 @@ public class Booth{
         isClosed = closed;
     }
 
+    @Override
     public String toString() {
         return "Watermelon Stand [id=" + id + ", name=" + name + ", total=" + total + ", isClosed=" + isClosed + "]";
     }
