@@ -6,7 +6,13 @@ public class Main {
 
         System.out.println(booths[0].toString());
         Booth.purchase(booths[1], 10);
-        booths[0].restock(10);
+        Booth.purchase(booths[1], -10);
+        Booth.purchase(booths[1], 600);
+        booths[1].setClosed(true);
+        booths[1].restock(10);
+        System.out.println(booths[1].toString());
+        booths[1].restock(300);
+        booths[1].setClosed(false);
         booths[0].setClosed(true);
         Booth.closeBooths(booths);
     }
