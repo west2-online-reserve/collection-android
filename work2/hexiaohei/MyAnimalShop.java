@@ -42,17 +42,11 @@ public class MyAnimalShop implements AnimalShop{
      */
     @Override
     public void buyNewAnimal(Animal animalBought) {
-        try {
-            if (finalBalance >= animalBought.cost) {
-                animal.add(animalBought);
-                finalBalance -= animalBought.cost;
-            } else {
-                throw new InsufficientBalanceException();
-            }
-        }
-        catch (InsufficientBalanceException exception1)
-        {
-            exception1.printClue().printStackTrace();
+        if (finalBalance >= animalBought.cost) {
+            animal.add(animalBought);
+            finalBalance -= animalBought.cost;
+        } else {
+            throw new InsufficientBalanceException("囊中羞涩，买不起呀！");
         }
     }
 
@@ -71,17 +65,12 @@ public class MyAnimalShop implements AnimalShop{
             if (!customerCome.contains(customer)) {
                 customerCome.add(customer);
             }
-
-            try {
-                if (animal.contains(animalSold)) {
-                    System.out.println("卖出的宠物的信息为：" + animalSold.toString());
-                    animal.remove(animalSold);
-                    finalBalance += animalSold.price;
-                } else {
-                    throw new AnimalNotFoundException();
-                }
-            } catch (AnimalNotFoundException exception2) {
-                exception2.printClue().printStackTrace();
+            if (animal.contains(animalSold)) {
+                System.out.println("卖出的宠物的信息为：" + animalSold.toString());
+                animal.remove(animalSold);
+                finalBalance += animalSold.price;
+            } else {
+                throw new AnimalNotFoundException("不好意思，宠物都卖完咯");
             }
         }
     }
