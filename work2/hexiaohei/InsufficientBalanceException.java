@@ -5,8 +5,8 @@ package work2.hexiaohei;
  * @author hexiaohei
  */
 public class InsufficientBalanceException extends RuntimeException{
-    public InsufficientBalanceException printClue(){
-        System.out.println("余额不足，买不了哦");
-        return this;
+    public InsufficientBalanceException(){}
+    public InsufficientBalanceException(String gripe){
+        super(gripe);
     }
 }
