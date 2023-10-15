@@ -5,8 +5,8 @@ package work2.hexiaohei;
  * @author hexiaohei
  */
 public class AnimalNotFoundException extends RuntimeException{
-    public AnimalNotFoundException printClue(){
-        System.out.println("不好意思，该宠物已经有人领走咯");
-        return this;
+    public AnimalNotFoundException(){}
+    public AnimalNotFoundException(String gripe){
+        super(gripe);
     }
 }
