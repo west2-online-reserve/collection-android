@@ -7,7 +7,6 @@
 Bonus部分:
 
 * [Git教程 - 廖雪峰的官方网站 (liaoxuefeng.com)](https://www.liaoxuefeng.com/wiki/896043488029600/)
-* [Git 大全 - Gitee.com](https://gitee.com/all-about-git)
 * [正则表达式在线测试网站](https://regex101.com/)
 
 ## 知识点
@@ -18,15 +17,16 @@ Bonus部分:
 * 泛型
 
 * Bonus
-  * 了解git 
   * java.uitl以及java.math下的一些常用工具类 (如 Date / Math / Random / BigDemical / ArrayList 等等等等)
   * 多线程 (JUC)
   * 正则表达式
 
 ## 任务
 
+**【强制】注意编程规范**
+   [阿里巴巴开发规范](../etc/blog/阿里巴巴Java开发手册.pdf)
+
 > 用代码来写一个自己的宠物店，题目有点长耐心看~
->
 > 完成下面的类
 >
 > **开一家宠物店，宠物店要有动物还要有顾客**
@@ -46,7 +46,7 @@ Bonus部分:
 
 **2. 中华田园犬类** (extends Animal)<img src="https://gitee.com/sky-dog/note/raw/master/img/202210252201019.jpg" alt="img" style="zoom:3%;" />
 
-* 变量: isVaccineInjected() (boolean 是否注射狂犬病疫苗)
+* 变量: isVaccineInjected(boolean 是否注射狂犬病疫苗)
 * 价格100元
 
 **3. 猫猫类 (extends Animal)**<img src="https://gitee.com/sky-dog/note/raw/master/img/202210252202619.png" alt="image-20221025220229577" style="zoom:15%;" />
@@ -114,7 +114,6 @@ Bonus部分:
 
 ## Bonus
 
-* 注册一个[GitHub](https://github.com/)账号，学习基本git操作，把**整个项目**提交到代码仓库中
 * 设计两个方法
 
   * 设计一个接收两个int数组的方法void, 使用多线程交替输出其中的元素
