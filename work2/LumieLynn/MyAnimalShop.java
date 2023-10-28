@@ -5,6 +5,7 @@ public class MyAnimalShop implements AnimalShop {
     protected double balance;
     protected double profit = 0;
     protected boolean isOpen;
+
     protected LocalDate date = LocalDate.now();
     protected ArrayList<Animal> animals = new ArrayList<>();
     protected ArrayList<Customer> customers = new ArrayList<>();
@@ -48,11 +49,11 @@ public class MyAnimalShop implements AnimalShop {
         } else {
             if (!customers.contains(customer)) {
                 customers.add(customer);
-                if(customer.getFrequency() == 0) {
-                    System.out.println("Hello, " + customer.getName() + ". You are a new guest of this Animal Shop!");
-                } else {
-                    System.out.println("Welcome,"+customer.getName()+". Seems that you've come to our shop before.");
-                }
+            }
+            if(customer.getFrequency() == 0) {
+                System.out.println("Hello, " + customer.getName() + ". You are a new guest of this Animal Shop!");
+            } else {
+                System.out.println("Welcome,"+customer.getName()+". Seems that you've come to our shop before.");
             }
             customer.setFrequency(customer.getFrequency() + 1);
             customer.setLatest(date);

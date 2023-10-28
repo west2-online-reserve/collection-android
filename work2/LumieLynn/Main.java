@@ -39,7 +39,8 @@ public class Main {
         La_Soleil.closeShop();
         //Open for a second time
         La_Soleil.openShop();
-        La_Soleil.buyNewAnimals(Gorou);
+        La_Soleil.buyNewAnimals(Meipuru);
+        La_Soleil.entertainCustomer(Murasame,Meipuru);
         La_Soleil.closeShop();
 
     }
