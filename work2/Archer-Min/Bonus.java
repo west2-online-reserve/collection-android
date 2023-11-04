@@ -1,7 +1,7 @@
 public class Bonus {
     public static void main(String[] args) {
         int[] array1 = {1, 3, 5, 7, 9};
-        int[] array2 = {2, 4, 6, 8, 10,11,12};
+        int[] array2 = {2, 4, 6, 8, 10, 11, 12};
 
         printArraysInAlternatingThreads(array1, array2);
     }

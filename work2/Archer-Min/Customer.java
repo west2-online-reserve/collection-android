@@ -34,8 +34,9 @@ public class Customer {
 
     private int times;
     private LocalDate lastArriveDate;
-   @Override
-    public String toString(){
-        return "顾客姓名："+name+",到店次数："+times+"最近到店时间："+lastArriveDate;
+
+    @Override
+    public String toString() {
+        return "顾客姓名：" + name + ",到店次数：" + times + "最近到店时间：" + lastArriveDate;
     }
 }

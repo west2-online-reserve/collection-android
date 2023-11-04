@@ -1,11 +1,10 @@
 public abstract class Animal {
-
-
     protected String name;
     protected int age;
     protected String sex;
     protected double priceOut;
     protected double priceIn;
+
     public double getPriceOut() {
         return priceOut;
     }
@@ -22,17 +21,18 @@ public abstract class Animal {
         this.priceIn = priceIn;
     }
 
-
     public String getName() {
         return name;
     }
-    public Animal(String name, int age, String sex, double priceIn,double priceOut) {
+
+    public Animal(String name, int age, String sex, double priceIn, double priceOut) {
         this.name = name;
         this.age = age;
         this.sex = sex;
         this.priceOut = priceOut;
-        this.priceIn=priceIn;
+        this.priceIn = priceIn;
     }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -52,8 +52,6 @@ public abstract class Animal {
     public void setSex(String sex) {
         this.sex = sex;
     }
-
-
 
     public abstract String toString();
 
