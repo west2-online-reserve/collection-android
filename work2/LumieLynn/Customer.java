@@ -33,7 +33,7 @@ public class Customer {
         return frequency;
     }
 
-    public void setFrequency(int frequency) {
+    public void updateFrequency(int frequency) {
         this.frequency = frequency;
     }
 
@@ -41,7 +41,7 @@ public class Customer {
         return latest;
     }
 
-    public void setLatest(LocalDate latest) {
+    public void updateLatest(LocalDate latest) {
         this.latest = latest;
     }
 

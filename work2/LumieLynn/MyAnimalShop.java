@@ -2,13 +2,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class MyAnimalShop implements AnimalShop {
-    protected double balance;
-    protected double profit = 0;
-    protected boolean isOpen;
+    private double balance;
+    private double profit = 0;
+    private boolean isOpen;
 
-    protected LocalDate date = LocalDate.now();
-    protected ArrayList<Animal> animals = new ArrayList<>();
-    protected ArrayList<Customer> customers = new ArrayList<>();
+    private LocalDate date = LocalDate.now();
+    private ArrayList<Animal> animals = new ArrayList<>();
+    private ArrayList<Customer> customers = new ArrayList<>();
 
     public MyAnimalShop(double balance,boolean isOpen) {
         this.balance = balance;
@@ -16,19 +16,18 @@ public class MyAnimalShop implements AnimalShop {
     }
 
     @Override
-    public void setInitialAnimal(Animal animal) {
+    public void addInitialAnimal(Animal animal) {
         animals.add(animal);
         System.out.println(animal.getName()+" is added to your shop.");
     }
 
     @Override
-    public void buyNewAnimals(Animal animal) {
+    public void buyNewAnimal(Animal animal) throws InsufficientBalanceException {
         if(!isOpen) {
             System.out.println("The shop is not opened.");
             return;
         }
-        try {
-            if(balance<animal.getPrice()) {
+        if(balance<animal.getPrice()) {
                 throw new InsufficientBalanceException("Failed! Balance is lower than price.");
             }
             else{
@@ -37,13 +36,10 @@ public class MyAnimalShop implements AnimalShop {
                 profit-=animal.getPrice();
                 System.out.println("Successful. You've bought :"+animal.toString()+"\nYour balance remains "+balance+".");
             }
-        }catch (InsufficientBalanceException e){
-                e.printStackTrace();
-        }
     }
 
     @Override
-    public void entertainCustomer(Customer customer, Animal animal) {
+    public void entertainCustomer(Customer customer, Animal animal) throws AnimalNotFoundException {
         if(!isOpen) {
             System.out.println("The shop is not opened.");
         } else {
@@ -55,10 +51,9 @@ public class MyAnimalShop implements AnimalShop {
             } else {
                 System.out.println("Welcome,"+customer.getName()+". Seems that you've come to our shop before.");
             }
-            customer.setFrequency(customer.getFrequency() + 1);
-            customer.setLatest(date);
-            try {
-                if (animals.contains(animal)) {
+            customer.updateFrequency(customer.getFrequency() + 1);
+            customer.updateLatest(date);
+            if (animals.contains(animal)) {
                     balance += animal.getPrice();
                     profit += animal.getPrice();
                     System.out.println(customer.getName()+" bought "+animal.getName() + " Successfully!");
@@ -67,9 +62,6 @@ public class MyAnimalShop implements AnimalShop {
                 } else {
                     throw new AnimalNotFoundException("Sorry," + customer.getName() + ", our shop don't have this animal.");
                 }
-            } catch (AnimalNotFoundException e) {
-                e.printStackTrace();
-            }
         }
     }
 

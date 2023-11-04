@@ -21,26 +21,42 @@ public class Main {
 
         //Shop features
 
-        //Set Initial Pets
-        La_Soleil.setInitialAnimal(Shokora);
-        La_Soleil.setInitialAnimal(Banira);
-        La_Soleil.setInitialAnimal(Azuki);
-        La_Soleil.setInitialAnimal(Kokonasu);
+        //Add Initial Pets
+        La_Soleil.addInitialAnimal(Shokora);
+        La_Soleil.addInitialAnimal(Banira);
+        La_Soleil.addInitialAnimal(Azuki);
+        La_Soleil.addInitialAnimal(Kokonasu);
         //Open Shop
         La_Soleil.openShop();
         //Buy Pets
-        La_Soleil.buyNewAnimals(Shisho);
-        La_Soleil.buyNewAnimals(Gorou);
+        try{
+            La_Soleil.buyNewAnimal(Shisho);
+            La_Soleil.buyNewAnimal(Gorou);
+        } catch(InsufficientBalanceException e) {
+            e.printStackTrace();
+        }
         //Entertain Customer
-        La_Soleil.entertainCustomer(Minazuki_Shigure,Azuki);
-        La_Soleil.entertainCustomer(Maniwa_Roka,Kokonasu);
-        La_Soleil.entertainCustomer(Murasame,Meipuru);
+        try{
+            La_Soleil.entertainCustomer(Minazuki_Shigure,Azuki);
+            La_Soleil.entertainCustomer(Maniwa_Roka,Kokonasu);
+            La_Soleil.entertainCustomer(Murasame,Meipuru);
+        } catch (AnimalNotFoundException e) {
+            e.printStackTrace();
+        }
         //Close Shop
         La_Soleil.closeShop();
         //Open for a second time
         La_Soleil.openShop();
-        La_Soleil.buyNewAnimals(Meipuru);
-        La_Soleil.entertainCustomer(Murasame,Meipuru);
+        try{
+            La_Soleil.buyNewAnimal(Meipuru);
+        } catch (InsufficientBalanceException e) {
+            e.printStackTrace();
+        }
+        try {
+            La_Soleil.entertainCustomer(Murasame, Meipuru);
+        } catch (AnimalNotFoundException e) {
+            e.printStackTrace();
+        }
         La_Soleil.closeShop();
 
     }
