@@ -1,6 +1,9 @@
 import java.time.LocalDate;
 
 public class Customer {
+    private int times;
+    private LocalDate lastArriveDate;
+
     public Customer(String name, int times) {
         this.name = name;
         this.times = times;
@@ -31,9 +34,6 @@ public class Customer {
     public int getTimes() {
         return times;
     }
-
-    private int times;
-    private LocalDate lastArriveDate;
 
     @Override
     public String toString() {
