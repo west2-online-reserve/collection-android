@@ -17,8 +17,8 @@ public class Customer {
         this.name = name;
     }
 
-    public void setTimes(int times) {
-        this.times = times;
+    public void setTimes() {
+        this.times++;
     }
 
     public LocalDate getLastArriveDate() {

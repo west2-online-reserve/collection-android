@@ -52,7 +52,7 @@ public class MyAnimalShop implements AnimalShop {
                 if (customer.getTimes() == 0) {
                     customers.add(customer);
                 }
-                customer.setTimes(customer.getTimes() + 1);
+                customer.setTimes();
                 customer.setLastArriveDate(date);
                 animals.toString();
                 remainder += animal.priceOut;
