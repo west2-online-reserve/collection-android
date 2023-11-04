@@ -23,19 +23,14 @@ public class MyAnimalShop implements AnimalShop {
             System.out.println("宠物店歇业中");
             return;
         }
-        try {
-            if (remainder < animal.priceIn) {
-                throw new InsufficientBalanceException("余额不足！");
-            } else {
-                remainder -= animal.priceIn;
-                animals.add(animal);
-                System.out.println("--------买入成功--------");
-                System.out.println("新动物信息：\n" + animal.toString());
-            }
-        } catch (InsufficientBalanceException e) {
-            System.out.println(e.getMessage());
+        if (remainder < animal.priceIn) {
+            throw new InsufficientBalanceException("余额不足！");
+        }else {
+            remainder -= animal.priceIn;
+            animals.add(animal);
+            System.out.println("--------买入成功--------");
+            System.out.println("新动物信息：\n" + animal.toString());
         }
-
     }
     /**
      * 招待客人卖出宠物
@@ -45,24 +40,20 @@ public class MyAnimalShop implements AnimalShop {
             System.out.println("宠物店歇业中");
             return;
         }
-        try {
-            if (animals.isEmpty()) {
-                throw new AnimalNotFoundException("店内暂无动物");
-            } else {
-                if (customer.getTimes() == 0) {
-                    customers.add(customer);
-                }
-                customer.setTimes();
-                customer.setLastArriveDate(date);
-                animals.toString();
-                remainder += animal.priceOut;
-                animals.remove(animal);
-                System.out.println("--------交易成功--------");
-                System.out.println("顾客信息：\n" + customer);
-                System.out.println("卖出的宠物信息：\n" + animal);
+        if (animals.isEmpty()) {
+            throw new AnimalNotFoundException("店内暂无动物");
+        } else {
+            if (customer.getTimes() == 0) {
+                customers.add(customer);
             }
-        } catch (AnimalNotFoundException e) {
-            System.out.println(e.getMessage());
+            customer.setTimes();
+            customer.setLastArriveDate(date);
+            animals.toString();
+            remainder += animal.priceOut;
+            animals.remove(animal);
+            System.out.println("--------交易成功--------");
+            System.out.println("顾客信息：\n" + customer);
+            System.out.println("卖出的宠物信息：\n" + animal);
         }
     }
 
