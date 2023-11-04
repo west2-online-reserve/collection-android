@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class MyAnimalShop implements AnimalShop {
     private LocalDate date;
     private double remainder;
-    private double remainder0;
+    private double lastRemainder;//前一天的盈利
     private ArrayList<Animal> animals = new ArrayList<>();
     private ArrayList<Customer> customers = new ArrayList<>();
     private boolean isOpen = true;
@@ -12,7 +12,7 @@ public class MyAnimalShop implements AnimalShop {
     public MyAnimalShop(double remainder, LocalDate date) {
         this.remainder = remainder;
         this.date = date;
-        remainder0 = remainder;
+        lastRemainder = remainder;
     }
 
     /**
@@ -66,9 +66,9 @@ public class MyAnimalShop implements AnimalShop {
                 System.out.println(customer.toString());
             }
         }
-        System.out.println("今日盈利：" + (remainder - remainder0));
+        System.out.println("今日盈利：" + (remainder - lastRemainder));
         date = date.plusDays(1);//歇业后日期加一天
-        remainder0 = remainder;
+        lastRemainder = remainder;
         this.isOpen = false;
     }
 
