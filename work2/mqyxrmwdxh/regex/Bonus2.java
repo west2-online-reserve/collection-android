@@ -44,12 +44,7 @@ class JudgeString {
 
     boolean isLegal() {
         if ((email != null) && (!email.isEmpty())) {
-            if (Pattern.matches(regex, email)) {
-                return true;
-            } else {
-                return false;
-            }
-
+            return Pattern.matches(regex, email);
         } else {
             return false;
         }
