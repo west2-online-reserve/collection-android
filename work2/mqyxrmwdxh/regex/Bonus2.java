@@ -8,17 +8,31 @@ import java.util.regex.Pattern;
 public class Bonus2 {
     public static void main(String[] args) {
         JudgeString test = new JudgeString("sfafj@qq.com");
-        test.isLegal();
+        if (test.isLegal()) {
+            System.out.println("正确邮箱地址");
+        } else {
+            System.out.println("错误邮箱地址");
+        }
+
         test.setEmail("24383.@ff.s.s._con");
-        test.isLegal();
+        if (test.isLegal()) {
+            System.out.println("正确邮箱地址");
+        } else {
+            System.out.println("错误邮箱地址");
+        }
+
         test.setEmail("25435@sfh.sf.com");
-        test.isLegal();
+        if (test.isLegal()) {
+            System.out.println("正确邮箱地址");
+        } else {
+            System.out.println("错误邮箱地址");
+        }
     }
 }
 
 class JudgeString {
     String email;
-    static String regex="^(\\w+([-.][a-z0-9A-Z]+)*){3,18}@\\w+([-.][a-z0-9A-Z]+)*\\.[a-zA-Z]+$";
+    static String regex = "^(\\w+([-.][a-z0-9A-Z]+)*){3,18}@\\w+([-.][a-z0-9A-Z]+)*\\.[a-zA-Z]+$";
 
     JudgeString(String email) {
         this.email = email;
@@ -31,15 +45,12 @@ class JudgeString {
     boolean isLegal() {
         if ((email != null) && (!email.isEmpty())) {
             if (Pattern.matches(regex, email)) {
-                System.out.println("正确邮箱地址");
                 return true;
             } else {
-                System.out.println("错误邮箱地址");
                 return false;
             }
 
         } else {
-            System.out.println("错误邮箱地址");
             return false;
         }
 

@@ -51,24 +51,18 @@ public class MyAnimalShop implements AnimalShop {
             return false;
         }
 
-        try {
-            if (price > closeBalance) {
-                throw new InsufficientBalanceException();
+        if (price > closeBalance) {
+            throw new InsufficientBalanceException();
+        } else {
+            if (!animalList.contains(animal)) {
+                animalList.add(animal);
+                closeBalance -= price;
+                return true;
             } else {
-                if (!animalList.contains(animal)) {
-                    animalList.add(animal);
-                    closeBalance -= price;
-                    return true;
-                } else {
-                    return false;
-                }
-
+                return false;
             }
-
-        } catch (InsufficientBalanceException e) {
-            e.alarm().printStackTrace();
-            return false;
         }
+
     }
 
     @Override
@@ -81,21 +75,17 @@ public class MyAnimalShop implements AnimalShop {
             customersList.add(customer);
         }
 
-        try {
-            customer.setVisitNum(customer.getVisitNum() + 1);
-            customer.setLatestTime(date);
-            if (animalList.contains(animal)) {
-                closeBalance += animal.getPrice();
-                customer.addPet(animal);
-                System.out.println("顾客" + customer.getName() + "在" + shopName + "购买了" + animal.getName() + "\n" + animal);
-                animalList.remove(animal);
-            } else {
-                throw new AnimalNotFountException();
-            }
-
-        } catch (AnimalNotFountException e) {
-            e.alarm().printStackTrace();
+        customer.addVisitNum();
+        customer.setLatestTime(date);
+        if (animalList.contains(animal)) {
+            closeBalance += animal.getPrice();
+            customer.addPet(animal);
+            System.out.println("顾客" + customer.getName() + "在" + shopName + "购买了" + animal.getName() + "\n" + animal);
+            animalList.remove(animal);
+        } else {
+            throw new AnimalNotFountException();
         }
+
     }
 
     @Override
@@ -108,11 +98,10 @@ public class MyAnimalShop implements AnimalShop {
                     System.out.println(customer);
                 }
             }
-            double temp = closeBalance - openBalance;
-            if (temp > 0) {
-                System.out.println("今天收入" + temp + "元," + "余额为" + closeBalance + "元");
+            if ((closeBalance - openBalance) > 0) {
+                System.out.println("今天收入" + (closeBalance - openBalance) + "元," + "余额为" + closeBalance + "元");
             } else {
-                System.out.println("今天支出" + -temp + "元," + "余额为" + closeBalance + "元");
+                System.out.println("今天支出" + (openBalance - closeBalance) + "元," + "余额为" + closeBalance + "元");
             }
             openBalance = closeBalance;
             date = date.plusDays(1);

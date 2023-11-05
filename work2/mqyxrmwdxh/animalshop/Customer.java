@@ -45,8 +45,8 @@ public class Customer {
         this.latestTime = latestTime;
     }
 
-    public void setVisitNum(int visitNum) {
-        this.visitNum = visitNum;
+    public void addVisitNum() {
+        this.visitNum++;
     }
 
     public int getVisitNum() {

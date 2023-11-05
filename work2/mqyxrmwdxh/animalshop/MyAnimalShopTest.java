@@ -22,38 +22,57 @@ public class MyAnimalShopTest {
         ChineseRuralDog white = new ChineseRuralDog(true, "小白", 6, 32.9, SexEnum.MALE);
         Tortoise bastard = new Tortoise("王八哥", 40, 20.3, SexEnum.MALE, 1000.0, 18);
 
-        //First Day
-        shop.openShop();
-        shop.purchaseAnimal(bastard, 1000);
-        shop.purchaseAnimal(black, 50);
-        shop.entertainCustomer(customer2, black);
-        shop.closeShop();
-        System.out.println("*************************************");
+        try {
+            //First Day
+            shop.openShop();
 
-        //Second Day
-        shop.closeShop();
-        shop.openShop();
-        shop.entertainCustomer(customer1, bastard);
-        shop.entertainCustomer(customer1, black);
-        shop.purchaseAnimal(white, 60);
-        shop.purchaseAnimal(garfield, 20);
-        shop.closeShop();
-        System.out.println("*************************************");
+            //InsufficientBalanceException
+            shop.purchaseAnimal(bastard, 1000);
 
-        //Third Day
-        shop.openShop();
-        shop.purchaseAnimal(ragdoll, 150);
-        shop.entertainCustomer(customer4, white);
-        shop.closeShop();
-        System.out.println("*************************************");
+            shop.purchaseAnimal(black, 50);
+            shop.entertainCustomer(customer2, black);
+            shop.closeShop();
+            System.out.println("*************************************");
 
-        //Fourth Day
-        shop.openShop();
-        shop.entertainCustomer(customer5, ragdoll);
-        shop.entertainCustomer(customer5, bastard);
-        shop.entertainCustomer(customer5, garfield);
-        shop.closeShop();
-        System.out.println("*************************************");
+            //Second Day
+            shop.closeShop();
+            shop.openShop();
+
+            //AnimalNotFountException
+            shop.entertainCustomer(customer1, bastard);
+            shop.entertainCustomer(customer1, black);
+
+            shop.purchaseAnimal(white, 60);
+            shop.purchaseAnimal(garfield, 20);
+            shop.closeShop();
+            System.out.println("*************************************");
+
+            //Third Day
+            shop.openShop();
+            shop.purchaseAnimal(ragdoll, 150);
+
+            //AnimalNotFountException
+            shop.entertainCustomer(customer4, white);
+
+            shop.closeShop();
+            System.out.println("*************************************");
+
+            //Fourth Day
+            shop.openShop();
+            shop.entertainCustomer(customer5, ragdoll);
+
+            //AnimalNotFountException
+            shop.entertainCustomer(customer5, bastard);
+
+            shop.entertainCustomer(customer5, garfield);
+            shop.closeShop();
+            System.out.println("*************************************");
+
+        } catch (InsufficientBalanceException e1) {
+            e1.alarm().printStackTrace();
+        } catch (AnimalNotFountException e2) {
+            e2.alarm().printStackTrace();
+        }
 
         //Test Customer
         customer1.getPetList();
@@ -61,7 +80,6 @@ public class MyAnimalShopTest {
         customer3.getPetList();
         customer4.getPetList();
         customer5.getPetList();
-
     }
 
 
