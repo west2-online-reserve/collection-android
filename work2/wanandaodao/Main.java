@@ -66,8 +66,25 @@ public class Main {
         }catch(AnimalNotFountException e){
             e.printError();
         }
-
+        System.out.println("当前店铺中所有动物为: ");
+        for (int i = 0; i < myAnimalShop.animalList.size(); i++) {
+            System.out.println(myAnimalShop.animalList.get(i).toString());
+        }
         System.out.println("店铺余额为: " + myAnimalShop.getBalance());
+        System.out.println("当前店铺中所有接待过的顾客信息: ");
+        for (int i = 0; i < myAnimalShop.customerList.size(); i++) {
+            System.out.println(myAnimalShop.customerList.get(i).toString());
+        }
+
+        myAnimalShop.buyNewAnimal(dog1);
+        //测试相同顾客
+        try {
+            myAnimalShop.treatCustomer(cus1);
+            myAnimalShop.treatCustomer(cus2);
+        } catch (AnimalNotFountException e) {
+            e.printError();
+        }
+
         System.out.println("当前店铺中所有接待过的顾客信息: ");
         for (int i = 0; i < myAnimalShop.customerList.size(); i++) {
             System.out.println(myAnimalShop.customerList.get(i).toString());

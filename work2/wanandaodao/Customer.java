@@ -6,10 +6,10 @@ import java.time.LocalDate;
  * @author 晚安叨叨
  */
 public class Customer {
-    public String name;
-    public int times;
-    public LocalDate latestTime;
-    public Animal animal;
+    private String name;
+    private int times;
+    private LocalDate latestTime;
+    private Animal animal;
     public Customer(String name, int times, LocalDate latestTime,Animal animal) {
         this.name = name;
         this.times = times;
@@ -39,6 +39,14 @@ public class Customer {
 
     public void setLatestTime(LocalDate latestTime) {
         this.latestTime = latestTime;
+    }
+
+    public Animal getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
     }
 
     @Override

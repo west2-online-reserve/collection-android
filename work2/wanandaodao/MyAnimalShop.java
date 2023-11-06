@@ -33,14 +33,20 @@ public class MyAnimalShop implements AnimalShop {
 
     @Override
     public void treatCustomer(Customer cus) {
-        customerList.add(cus);
         //找不到需要购买的动物
-        if(!animalList.contains(cus.animal)){
-            throw new AnimalNotFountException(cus.animal);
+        if(!animalList.contains(cus.getAnimal())){
+            throw new AnimalNotFountException(cus.getAnimal());
         }else{
-            animalList.remove(cus.animal);
-            balance+=cus.animal.price;
-            System.out.println("您已成功购买:"+cus.animal.toString());
+            if(customerList.contains(cus)){
+                customerList.remove(cus);
+            }
+            //更新顾客到店信息
+            cus.setLatestTime(LocalDate.now());
+            cus.setTimes(cus.getTimes()+1);
+            customerList.add(cus);
+            animalList.remove(cus.getAnimal());
+            balance+=cus.getAnimal().price;
+            System.out.println(cus.getName()+"已成功购买"+cus.getAnimal().toString());
         }
     }
 
@@ -48,10 +54,11 @@ public class MyAnimalShop implements AnimalShop {
     public void goOutOfBusiness() {
         double ans=0;
         LocalDate date=LocalDate.now();
+        System.out.println("当天所有接待过的顾客为: ");
         for (Customer cus : customerList) {
-            if (date.equals(cus.latestTime)) {
+            if (date.equals(cus.getLatestTime())) {
                 System.out.println(cus.toString());
-                ans += cus.animal.price;
+                ans += cus.getAnimal().price;
             }
         }
         System.out.println("当天的利润为: "+ans);

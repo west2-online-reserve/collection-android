@@ -4,7 +4,7 @@ package com.wanandaodao.zoo;
  * @author 晚安叨叨
  */
 public class ChineseRuralDog extends Animal{
-    boolean isVaccineInjected;
+    private boolean isVaccineInjected;
 
     public boolean isVaccineInjected() {
         return isVaccineInjected;
