@@ -46,12 +46,16 @@ public class MyAnimalShop implements AnimalShop{
     // 买入动物
     @Override
     public void buyNewAnimal(Animal animal, double cost) throws InsufficientBalanceException{
-        if (balance >= cost) {
-            animals.add(animal);
-            newBalance = balance - cost;
-            System.out.println("购买" + animal.toString() + "花费" + cost + "元");
-        } else {
-            throw new InsufficientBalanceException("余额不足啦~");
+        try{
+            if (balance >= cost) {
+                animals.add(animal);
+                newBalance = balance - cost;
+                System.out.println("购买" + animal.toString() + "花费" + cost + "元");
+            } else {
+                throw new InsufficientBalanceException("余额不足啦~");
+            }
+        }catch(InsufficientBalanceException e){
+            System.out.println("余额不足啦~");
         }
     }
 
@@ -62,15 +66,19 @@ public class MyAnimalShop implements AnimalShop{
             System.out.println("本店尚未营业！");
             return;
         }
-        customers.add(customer);
-        customer.setArrivalTimes(customer.getArrivalTimes()+1);
-        customer.setLatestTime(date);
-        if (animals.contains(animal)) {
-            System.out.println("卖出" + animal.toString() + "盈利" + animal.getPrice() + "元");
-            newBalance = balance + animal.getPrice();
-            animals.remove(animal);
-        } else {
-            throw new AnimalNotFoundException("没找到这个小动物捏");
+        try{
+            customers.add(customer);
+            customer.setArrivalTimes();
+            customer.setLatestTime(date);
+            if (animals.contains(animal)) {
+                System.out.println("卖出" + animal.toString() + "盈利" + animal.getPrice() + "元");
+                newBalance = balance + animal.getPrice();
+                animals.remove(animal);
+            } else {
+                throw new AnimalNotFoundException("没找到这个小动物捏");
+            }
+        }catch(AnimalNotFoundException e){
+            System.out.println("没找到这个小动物捏");
         }
     }
 
