@@ -29,8 +29,8 @@ public class Customer {
         return times;
     }
 
-    public void setTimes(int times) {
-        this.times = times;
+    public void autoincrement() {
+        this.times++;
     }
 
     public LocalDate getLatestTime() {

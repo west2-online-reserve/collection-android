@@ -4,14 +4,45 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * @author 晚安叨叨
+ */
 public class MyAnimalShop implements AnimalShop {
     private double balance;
-    public ArrayList<Animal>animalList;
-    public ArrayList<Customer>customerList;
-    public boolean isOpen;
+    private ArrayList<Animal>animalList;
+    private ArrayList<Customer>customerList;
+    private boolean isOpen;
 
     public double getBalance() {
         return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public ArrayList<Animal> getAnimalList() {
+        return animalList;
+    }
+
+    public void setAnimalList(ArrayList<Animal> animalList) {
+        this.animalList = animalList;
+    }
+
+    public ArrayList<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(ArrayList<Customer> customerList) {
+        this.customerList = customerList;
+    }
+
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
     }
 
     public MyAnimalShop(double balance, ArrayList<Animal> animalList, ArrayList<Customer> customerList, boolean isOpen) {
@@ -42,7 +73,7 @@ public class MyAnimalShop implements AnimalShop {
             }
             //更新顾客到店信息
             cus.setLatestTime(LocalDate.now());
-            cus.setTimes(cus.getTimes()+1);
+            cus.autoincrement();
             customerList.add(cus);
             animalList.remove(cus.getAnimal());
             balance+=cus.getAnimal().price;

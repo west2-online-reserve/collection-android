@@ -46,8 +46,8 @@ public class Main {
         myAnimalShop.buyNewAnimal(new Cat("猫7", 2, "雄"));
         System.out.println("店铺余额为: " + myAnimalShop.getBalance());
         System.out.println("当前店铺中所有动物为: ");
-        for (int i = 0; i < myAnimalShop.animalList.size(); i++) {
-            System.out.println(myAnimalShop.animalList.get(i).toString());
+        for (int i = 0; i < myAnimalShop.getAnimalList().size(); i++) {
+            System.out.println(myAnimalShop.getAnimalList().get(i).toString());
         }
         myAnimalShop.buyNewAnimal(cat1);
         System.out.println("店铺余额为: " + myAnimalShop.getBalance());
@@ -67,13 +67,13 @@ public class Main {
             e.printError();
         }
         System.out.println("当前店铺中所有动物为: ");
-        for (int i = 0; i < myAnimalShop.animalList.size(); i++) {
-            System.out.println(myAnimalShop.animalList.get(i).toString());
+        for (int i = 0; i < myAnimalShop.getAnimalList().size(); i++) {
+            System.out.println(myAnimalShop.getAnimalList().get(i).toString());
         }
         System.out.println("店铺余额为: " + myAnimalShop.getBalance());
         System.out.println("当前店铺中所有接待过的顾客信息: ");
-        for (int i = 0; i < myAnimalShop.customerList.size(); i++) {
-            System.out.println(myAnimalShop.customerList.get(i).toString());
+        for (int i = 0; i < myAnimalShop.getCustomerList().size(); i++) {
+            System.out.println(myAnimalShop.getCustomerList().get(i).toString());
         }
 
         myAnimalShop.buyNewAnimal(dog1);
@@ -86,8 +86,8 @@ public class Main {
         }
 
         System.out.println("当前店铺中所有接待过的顾客信息: ");
-        for (int i = 0; i < myAnimalShop.customerList.size(); i++) {
-            System.out.println(myAnimalShop.customerList.get(i).toString());
+        for (int i = 0; i < myAnimalShop.getCustomerList().size(); i++) {
+            System.out.println(myAnimalShop.getCustomerList().get(i).toString());
         }
 
         //歇业
