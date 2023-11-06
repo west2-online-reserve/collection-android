@@ -28,8 +28,8 @@ public class Customer {
         this.name = name;
     }
 
-    public void setArrivalTimes(int arrivalTimes) {
-        this.arrivalTimes = arrivalTimes;
+    public void setArrivalTimes() {
+        this.arrivalTimes++;
     }
 
     public void setLatestTime(LocalDate latestTime) {
