@@ -5,6 +5,6 @@ package com.wanandaodao.zoo;
  */
 public interface AnimalShop {
      void buyNewAnimal(Animal animal);
-     void treatCustomer(Customer cus);
+     void treatCustomer(Customer cus,Animal animal);
      void goOutOfBusiness();
 }

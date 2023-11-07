@@ -9,12 +9,10 @@ public class Customer {
     private String name;
     private int times;
     private LocalDate latestTime;
-    private Animal animal;
-    public Customer(String name, int times, LocalDate latestTime,Animal animal) {
+    public Customer(String name, int times, LocalDate latestTime) {
         this.name = name;
         this.times = times;
         this.latestTime = latestTime;
-        this.animal=animal;
     }
 
     public String getName() {
@@ -39,14 +37,6 @@ public class Customer {
 
     public void setLatestTime(LocalDate latestTime) {
         this.latestTime = latestTime;
-    }
-
-    public Animal getAnimal() {
-        return animal;
-    }
-
-    public void setAnimal(Animal animal) {
-        this.animal = animal;
     }
 
     @Override
