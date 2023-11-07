@@ -1,21 +1,29 @@
 package GoldenCreeperJ;
 
 import java.time.LocalDate;
-
+/**
+ * @author GoldenCreeperJ
+ * @date 2023/11/7
+ */
 public class test extends Thread{
-    public static void main(String[] args) throws InterruptedException {
-        MyAnimalShop myAnimalShop = new MyAnimalShop(500,true, LocalDate.of(2023,11,7));
-        myAnimalShop.buynewanimals(new Cat("1ha",2,"male"));
-        myAnimalShop.buynewanimals(new Dog("2ha",3,"female"));
-        myAnimalShop.buynewanimals(new ChineseRuralDog("3ha",4,"male",true));
-        myAnimalShop.treatcustomers(new Customer("xiaoming",1,myAnimalShop.getNowdate()), new Dog());
-        myAnimalShop.treatcustomers(new Customer("xiaohong",2,myAnimalShop.getNowdate()), new ChineseRuralDog());
-        myAnimalShop.closebusiness();
-        myAnimalShop.treatcustomers(new Customer("xiaoming",1,myAnimalShop.getNowdate()), new Dog());
-        myAnimalShop.openbusiness();
-        myAnimalShop.treatcustomers(new Customer("xiaohong",2,myAnimalShop.getNowdate()), new Cat());
-        myAnimalShop.closebusiness();
-
+    public static void main(String[] args) throws InsufficientBalanceException, AnimalNotFountException {
+        try{
+            MyAnimalShop myAnimalShop = new MyAnimalShop(500,true, LocalDate.of(2023,11,7));
+            myAnimalShop.buyNewAnimals(new Cat("1ha",2,"male"));
+            myAnimalShop.buyNewAnimals(new Dog("2ha",3,"female"));
+            myAnimalShop.buyNewAnimals(new ChineseRuralDog("3ha",4,"male",true));
+            myAnimalShop.treatCustomers(new Customer("xiaoming",1,myAnimalShop.getNowdate()), new Dog());
+            myAnimalShop.treatCustomers(new Customer("xiaohong",2,myAnimalShop.getNowdate()), new ChineseRuralDog());
+            myAnimalShop.closeBusiness();
+            myAnimalShop.closeBusiness();
+            myAnimalShop.treatCustomers(new Customer("xiaoming",1,myAnimalShop.getNowdate()), new Dog());
+            myAnimalShop.openBusiness();
+            myAnimalShop.openBusiness();
+            myAnimalShop.treatCustomers(new Customer("xiaohong",2,myAnimalShop.getNowdate()), new Cat());
+            myAnimalShop.closeBusiness();
+        } catch (InsufficientBalanceException | AnimalNotFountException e) {
+            System.out.println(e);
+        }
 
 
         judge("GoldenCreeperJ@foxmail.com");
@@ -25,15 +33,15 @@ public class test extends Thread{
         run(new int[]{1,3,5,7,9},new int[]{2,4,6,8,10});
     }
 
-    public static void judge(String e_mail) {
+    public static void judge(String eMail) {
         String regex = "\\w+@\\w+\\.com";
-        if (e_mail.matches(regex)) {
+        if (eMail.matches(regex)) {
             System.out.println("邮箱格式合法!\n");
         } else {
             System.out.println("邮箱格式非法!\n");
         }
     }
-    public static void run(int[] a,int[] b) throws InterruptedException {
+    public static void run(int[] a,int[] b) {
         Thread thread1 = new Thread(() -> {
             for (int num : a) {
                 System.out.printf("%d ",num);

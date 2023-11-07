@@ -31,26 +31,19 @@ public class MyAnimalShop implements AnimalsShop{
     }
 
     @Override
-    public void buynewanimals(Animal animal) throws InsufficientBalanceException{
-        try{
-            if(this.remainder>=animal.price) {
-                animalList.add(animal);
-                this.remainder-=animal.price;
-                this.profit-=animal.price;
-                System.out.println("进货成功!\n");
-                //System.out.println(this.animalList);
-            }else{
-                throw new InsufficientBalanceException();
-            }
-        }catch(InsufficientBalanceException e){
-            System.out.println(e);
+    public void buyNewAnimals(Animal animal) throws InsufficientBalanceException{
+        if(this.remainder>=animal.getPrice()) {
+            animalList.add(animal);
+            this.remainder-=animal.getPrice();
+            this.profit-=animal.getPrice();
+            System.out.println("进货成功!\n");
+        }else{
+            throw new InsufficientBalanceException();
         }
-
     }
 
-
     @Override
-    public void treatcustomers(Customer customer, Animal animal) throws AnimalNotFountException {
+    public void treatCustomers(Customer customer, Animal animal) throws AnimalNotFountException {
         if(this.istrade){
             boolean flag = true;
             for(Customer i:this.customerList){
@@ -62,33 +55,27 @@ public class MyAnimalShop implements AnimalsShop{
             }if(flag){
                 customerList.add(customer);
             }flag=true;
-            try{
-                for (Animal i : this.animalList) {
-                    if (i.getClass().equals(animal.getClass())) {
-                        this.remainder += i.price;
-                        this.profit += i.price;
-                        this.animalList.remove(i);
-                        System.out.println(i);
-                        System.out.println("出售成功!\n");
-                        //System.out.println(this.animalList);
-                        flag = false;
-                        break;
-                    }
+            for (Animal i : this.animalList) {
+                if (i.getClass().equals(animal.getClass())) {
+                    this.remainder += i.getPrice();
+                    this.profit += i.getPrice();
+                    this.animalList.remove(i);
+                    System.out.println(i);
+                    System.out.println("出售成功!\n");
+                    flag = false;
+                    break;
                 }
-                if (flag) {
-                    throw new AnimalNotFountException();
-                }
-            }catch (AnimalNotFountException e){
-                System.out.println(e);
+            }
+            if (flag) {
+                throw new AnimalNotFountException();
             }
         }else {
             System.out.println("歇业中，不出售动物!");
         }
-
     }
 
     @Override
-    public void closebusiness() {
+    public void closeBusiness() {
         if(this.istrade){
             System.out.println("歇业了!");
             System.out.println("今日利润:"+this.profit+"元\n");
@@ -104,7 +91,7 @@ public class MyAnimalShop implements AnimalsShop{
         }
     }
 
-    public void openbusiness(){
+    public void openBusiness(){
         if(! this.istrade){
             System.out.println("开业了!");
             this.nowdate=this.nowdate.plusDays(1);

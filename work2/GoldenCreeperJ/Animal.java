@@ -21,6 +21,10 @@ public abstract class Animal {
 
     }
 
+    public double getPrice() {
+        return price;
+    }
+
     @Override
     public abstract String toString();
 }
