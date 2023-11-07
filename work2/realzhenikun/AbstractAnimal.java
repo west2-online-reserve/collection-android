@@ -17,5 +17,37 @@ public abstract class AbstractAnimal {
         this.price = price;
     }
 
+    public String getAnimalName() {
+        return animalName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public abstract String toString();
 }

@@ -25,10 +25,10 @@ public class MyAnimalShop implements AnimalShop {
 
     @Override
     public void buyNewAnimal(AbstractAnimal animal) throws InsufficientBalanceException {
-        if (balance < animal.price) {
+        if (balance < animal.getPrice()) {
             throw new InsufficientBalanceException("余额不足\n");
         } else {
-            balance -= animal.price;
+            balance -= animal.getPrice();
             animalList.add(animal);
             System.out.println("购买成功");
         }
@@ -69,7 +69,7 @@ public class MyAnimalShop implements AnimalShop {
                     System.out.println("宠物序号错误，购买失败");
                 } else {
                     System.out.println("卖出的动物为:\n" + animalList.get(index - 1));
-                    balance += animalList.get(index - 1).price;
+                    balance += animalList.get(index - 1).getPrice();
                     animalList.remove(index - 1);
                 }
             }
@@ -78,24 +78,32 @@ public class MyAnimalShop implements AnimalShop {
 
     @Override
     public void closeShop() {
-        isOpen = false;
-        if (!customerList.isEmpty()) {
-            //选择当前日期光顾的顾客
-            System.out.println("今日光顾的客户:");
-            for (Customer customer : customerList) {
-                if (customer.getTime().equals(LocalDate.now())) {
-                    System.out.println(customer);
+        if (isOpen) {
+            isOpen = false;
+            if (!customerList.isEmpty()) {
+                //选择当前日期光顾的顾客
+                System.out.println("今日光顾的客户:");
+                for (Customer customer : customerList) {
+                    if (customer.getTime().equals(LocalDate.now())) {
+                        System.out.println(customer);
+                    }
                 }
+            } else {
+                System.out.println("今日无客户光顾");
             }
+            System.out.println("日期:" + LocalDate.now() + "\n利润:" + (balance - startBalance));
         } else {
-            System.out.println("今日无客户光顾");
+            System.out.println("当前已歇业");
         }
-        System.out.println("日期:" + LocalDate.now() + "\n利润:" + (balance - startBalance));
     }
 
     @Override
     public void openShop() {
-        isOpen = true;
-        startBalance = balance;
+        if (isOpen) {
+            System.out.println("当前已开业");
+        } else {
+            isOpen = true;
+            startBalance = balance;
+        }
     }
 }

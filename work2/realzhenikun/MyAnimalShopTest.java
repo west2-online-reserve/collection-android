@@ -51,6 +51,9 @@ public class MyAnimalShopTest {
         petShop.closeShop();
         petShop.openShop();
         petShop.closeShop();
+        petShop.closeShop();
+        petShop.openShop();
+        petShop.openShop();
 
         //组合测试1
         System.out.println("当前为组合测试1");

@@ -11,6 +11,14 @@ public class ChineseRuralDog extends AbstractAnimal {
         this.isVaccineInjected = isVaccineInjected;
     }
 
+    public void setIsVaccineInjected(boolean isVaccineInjected) {
+        this.isVaccineInjected = isVaccineInjected;
+    }
+
+    public boolean getIsVaccineInjected() {
+        return isVaccineInjected;
+    }
+
     @Override
     public String toString() {
         return "中华田园犬\n" + "名字:" +animalName + "\n年龄:" + age + "\n性别:" + sex + "\n价格:" + price + "\n是否注射狂犬疫苗:" + isVaccineInjected+ '\n';
