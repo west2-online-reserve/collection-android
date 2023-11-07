@@ -9,6 +9,7 @@ public class Customer {
     private String name;
     private int times;
     private LocalDate latestTime;
+
     public Customer(String name, int times, LocalDate latestTime) {
         this.name = name;
         this.times = times;
@@ -41,6 +42,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return name+" 到店次数 : "+times+" 最新到店时间为 : "+latestTime.getYear()+'.'+latestTime.getMonth()+'.'+latestTime.getDayOfMonth();
+        return name + " 到店次数 : " + times + " 最新到店时间为 : " + latestTime.getYear() + '.' + latestTime.getMonth() + '.' + latestTime.getDayOfMonth();
     }
 }

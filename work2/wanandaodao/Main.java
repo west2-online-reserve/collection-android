@@ -38,7 +38,7 @@ public class Main {
 
         ArrayList<Customer> customers = new ArrayList<>();
 
-        MyAnimalShop myAnimalShop = new MyAnimalShop(500,500, animals, customers, true);
+        MyAnimalShop myAnimalShop = new MyAnimalShop(500, 500, animals, customers, true);
 
 
         //买入两只动物
@@ -58,12 +58,12 @@ public class Main {
             e.printError();
         }
 
-        try{
-            myAnimalShop.treatCustomer(cus1,dog1);
-            myAnimalShop.treatCustomer(cus2,dog3);
-            myAnimalShop.treatCustomer(cus3,dog6);
-            myAnimalShop.treatCustomer(cus4,cat1);
-        }catch(AnimalNotFountException e){
+        try {
+            myAnimalShop.treatCustomer(cus1, dog1);
+            myAnimalShop.treatCustomer(cus2, dog3);
+            myAnimalShop.treatCustomer(cus3, dog6);
+            myAnimalShop.treatCustomer(cus4, cat1);
+        } catch (AnimalNotFountException e) {
             e.printError();
         }
         System.out.println("当前店铺中所有动物为: ");
@@ -79,9 +79,9 @@ public class Main {
         myAnimalShop.buyNewAnimal(dog1);
         //测试相同顾客
         try {
-            myAnimalShop.treatCustomer(cus1,cat2);
-            myAnimalShop.treatCustomer(cus2,cat5);
-            myAnimalShop.treatCustomer(cus3,cat6);
+            myAnimalShop.treatCustomer(cus1, cat2);
+            myAnimalShop.treatCustomer(cus2, cat5);
+            myAnimalShop.treatCustomer(cus3, cat6);
         } catch (AnimalNotFountException e) {
             e.printError();
         }
