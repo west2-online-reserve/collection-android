@@ -18,7 +18,7 @@ public class MyAnimalShop implements AnimalShop{
     LinkedList<Customer> customerCome;
 
     /**
-     * 构造fangfa
+     * 构造方法
      * @param balance        余额
      * @param animal         动物列表
      * @param customerCome   顾客列表
@@ -41,18 +41,12 @@ public class MyAnimalShop implements AnimalShop{
      * @param animalBought 买进的动物
      */
     @Override
-    public void buyNewAnimal(Animal animalBought) {
-        try {
-            if (finalBalance >= animalBought.cost) {
-                animal.add(animalBought);
-                finalBalance -= animalBought.cost;
-            } else {
-                throw new InsufficientBalanceException();
-            }
-        }
-        catch (InsufficientBalanceException exception1)
-        {
-            exception1.printClue().printStackTrace();
+    public void buyNewAnimal(Animal animalBought) throws InsufficientBalanceException {
+        if (finalBalance >= animalBought.cost) {
+            animal.add(animalBought);
+            finalBalance -= animalBought.cost;
+        } else {
+            throw new InsufficientBalanceException();
         }
     }
 
@@ -62,7 +56,7 @@ public class MyAnimalShop implements AnimalShop{
      * @param animalSold  顾客想要的宠物
      */
     @Override
-    public void treatCustomer(Customer customer, Animal animalSold) {
+    public void treatCustomer(Customer customer, Animal animalSold) throws AnimalNotFoundException {
         if (isClosed) {
             System.out.println("不好意思，今天歇业哦");
         } else {
@@ -71,17 +65,12 @@ public class MyAnimalShop implements AnimalShop{
             if (!customerCome.contains(customer)) {
                 customerCome.add(customer);
             }
-
-            try {
-                if (animal.contains(animalSold)) {
-                    System.out.println("卖出的宠物的信息为：" + animalSold.toString());
-                    animal.remove(animalSold);
-                    finalBalance += animalSold.price;
-                } else {
-                    throw new AnimalNotFoundException();
-                }
-            } catch (AnimalNotFoundException exception2) {
-                exception2.printClue().printStackTrace();
+            if (animal.contains(animalSold)) {
+                System.out.println("卖出的宠物的信息为：" + animalSold.toString());
+                animal.remove(animalSold);
+                finalBalance += animalSold.price;
+            } else {
+                throw new AnimalNotFoundException();
             }
         }
     }
