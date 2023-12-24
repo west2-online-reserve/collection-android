@@ -46,6 +46,7 @@ public class Test {
         myAnimalShop.buyNewAnimal(animal4);
         myAnimalShop.buyNewAnimal(animal5);
         myAnimalShop.buyNewAnimal(animal6);
+
         // 异常测试
         try {
             myAnimalShop.buyNewAnimal(animal7);
@@ -57,6 +58,7 @@ public class Test {
         } catch (InsufficientBalanceException e) {
             System.out.println("买不了，囊中羞涩");
         }
+
         // 查看买完动物后的余额
         System.out.println("当前余额为（单位：元）：\n" + myAnimalShop.getFinalBalance());
         // 查看此时的动物列表
@@ -90,6 +92,7 @@ public class Test {
         myAnimalShop.openShop();
         
         myAnimalShop.treatCustomer(customer3,animal3);
+
         // 异常测试
         try {
             myAnimalShop.treatCustomer(customer3,animal3);
@@ -101,6 +104,7 @@ public class Test {
         } catch (Exception e) {
             System.out.println("不好意思，该宠物已被买走");
         }
+
         
         myAnimalShop.closeShop();
 
