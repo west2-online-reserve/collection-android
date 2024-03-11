@@ -5,7 +5,7 @@ public class watermelon {
     private int total;
     private boolean isClosed;
 
-    // 构造方法
+
     public watermelon(long id, String name, int total, boolean isClosed) {
         this.id = id;
         this.name = name;
@@ -49,7 +49,7 @@ public class watermelon {
         this.isClosed = isClosed;
     }
 
-    // toString 方法重写
+    // toString
     @Override
     public String toString() {
         return String.format("摊号: %d, 摊主姓名: %s, 在售西瓜数: %d, 是否休摊整改: %b",
@@ -75,7 +75,7 @@ public class watermelon {
         }
     }
 
-    // 静态方法 closeBooths
+    // 静态方法
     public static void closeBooths(watermelon[] booths) {
         for (watermelon booth : booths) {
             if (!booth.isClosed()) {
