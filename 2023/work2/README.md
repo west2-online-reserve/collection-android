@@ -24,7 +24,7 @@ Bonus部分:
 ## 任务
 
 **【强制】注意编程规范**
-   [阿里巴巴开发规范](../etc/blog/阿里巴巴Java开发手册.pdf)
+   [阿里巴巴开发规范](https://github.com/west2-online/learn-java/blob/main/etc/blog/阿里巴巴Java开发手册.pdf)
 
 > 用代码来写一个自己的宠物店，题目有点长耐心看~
 > 完成下面的类
