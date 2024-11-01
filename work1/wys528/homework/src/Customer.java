@@ -4,9 +4,11 @@ public class Customer {
     private String name;
     private int visitCount;
     private LocalDate latestVisitDate;
+
     public LocalDate getLocalDate(){
         return this.latestVisitDate;
     }
+
 
     public Customer(String name, int visitCount, LocalDate latestVisitDate) {
         this.name = name;

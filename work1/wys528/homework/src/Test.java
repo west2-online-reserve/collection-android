@@ -14,7 +14,6 @@ public class Test {
             shop.serveCustomer(new Customer("张三", 1, LocalDate.now()));
             shop.serveCustomer(new Customer("李四", 2, LocalDate.now()));
 
-
             // 关闭商店
             shop.closeShop(LocalDate.now());
 

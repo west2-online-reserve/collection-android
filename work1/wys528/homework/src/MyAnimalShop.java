@@ -29,6 +29,7 @@ public class MyAnimalShop implements AnimalShop {
 
     @Override
     public void serveCustomer(Customer customer) {
+
         Customer testcustomer;
         int flag=0;
         if (!isOpen) {
@@ -43,6 +44,7 @@ public class MyAnimalShop implements AnimalShop {
         if (flag == 0) {
             customerList.add(customer);
         }
+
         if (animalList.isEmpty()) {
             throw new AnimalNotFoundException("店内没有动物可供购买！");
         }
@@ -57,10 +59,9 @@ public class MyAnimalShop implements AnimalShop {
         isOpen = false;
         System.out.println("店内客户信息:");
         for (Customer customer : customerList) {
-            if((customer.getLocalDate()).equals(LocalDate.now())){
-                System.out.println(customer.toString());
-            }
+            System.out.println(customer);
         }
         System.out.println("今天的利润是: " + balance);
+        customerList.clear(); // 清空客户列表
     }
 }
