@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Customer {
-    private String name;
+    private final String name;
     private int VisitNumber;
     private LocalDate NewestArriveTime;
     ArrayList<Animal> animals = new ArrayList<>();
@@ -36,6 +36,7 @@ public class Customer {
         builder.append(VisitNumber);
         builder.append(", NewestArriveTime=");
         builder.append(NewestArriveTime);
+        builder.append("]");
         return builder.toString();
     }
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 public class MyAnimalShop implements AnimalShop {
     private double balance;
     private boolean isClosed;
+    private double profit = 0;
     ArrayList<Animal> animals = new ArrayList<Animal>();
     ArrayList<Customer> customers = new ArrayList<Customer>();
     public MyAnimalShop(double balance) {
@@ -55,6 +56,7 @@ public class MyAnimalShop implements AnimalShop {
                 if (!customers.contains(customer)) customers.add(customer);
                 animals.remove(animal);
                 customer.addAnimal(animal);
+                profit += animal.getPrice();
                 setBalance(getBalance()+animal.getPrice());
                 System.out.println("Animal has been sold successfully to " + customer.getName() + ". "+animal.toString());
             }
@@ -71,6 +73,8 @@ public class MyAnimalShop implements AnimalShop {
                 System.out.println(customer.toString());
             }
         }
+        System.out.println("Profit this time:" + profit + ";In-store balance:"+balance);
+        profit = 0;
     }
 
     @Override
