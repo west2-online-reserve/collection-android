@@ -23,12 +23,6 @@ public abstract class Animal {
 
     public abstract double getPrice();
 
-    public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", gender='" + gender + '\'' +
-                ", price=" + getPrice() +
-                '}';
-    }
+    
+    public abstract String toString();
 }
