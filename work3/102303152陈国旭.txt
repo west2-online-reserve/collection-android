@@ -1,0 +1,3 @@
+仓库地址:[Goshenc/Round3_Android_Diary](https://github.com/Goshenc/Round3_Android_Diary)
+
+apk地址:[Release v1.0.0 · Goshenc/Round3_Android_Diary](https://github.com/Goshenc/Round3_Android_Diary/releases/tag/v1.0.0)
