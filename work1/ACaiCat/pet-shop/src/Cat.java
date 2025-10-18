@@ -1,8 +1,8 @@
 public class Cat extends Animal {
     protected boolean isHissing;
 
-    public Cat(String name, int age, boolean isMale, double price, boolean isHissing) {
-        super(name, age, isMale, price);
+    public Cat(String name, int age, boolean isMale, boolean isHissing) {
+        super(name, age, isMale, 200.0);
         this.isHissing = isHissing;
     }
 
