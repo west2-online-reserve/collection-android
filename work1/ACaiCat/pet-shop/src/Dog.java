@@ -2,13 +2,13 @@ public class Dog extends Animal {
 
     protected boolean vaccineInjected;
 
-    public void injectedVaccine() {
-        this.vaccineInjected = true;
-    }
-
     public Dog(String name, int age, boolean isMale, boolean vaccineInjected) {
         super(name, age, isMale, 200.0);
         this.vaccineInjected = vaccineInjected;
+    }
+
+    public void injectedVaccine() {
+        this.vaccineInjected = true;
     }
 
     @Override

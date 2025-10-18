@@ -1,13 +1,13 @@
 public class Cat extends Animal {
     protected boolean hissing;
 
-    public boolean isHissing() {
-        return hissing;
-    }
-
     public Cat(String name, int age, boolean isMale, boolean hissing) {
         super(name, age, isMale, 200.0);
         this.hissing = hissing;
+    }
+
+    public boolean isHissing() {
+        return hissing;
     }
 
     @Override

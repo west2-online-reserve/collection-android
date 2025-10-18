@@ -5,26 +5,26 @@ public class Customer {
     protected int visitCount;
     protected LocalDate lastVisitDate;
 
-    public String getName(){
-        return this.name;
-    }
-
-    public int getVisitCount(){
-        return this.visitCount;
-    }
-
-    public LocalDate getLastVisitDate(){
-        return this.lastVisitDate;
-    }
-
-    public void processVisite(){
-        this.visitCount++;
-        this.lastVisitDate = LocalDate.now();
-    }
-
     public Customer(String name) {
         this.name = name;
         this.visitCount = 1;
+        this.lastVisitDate = LocalDate.now();
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getVisitCount() {
+        return this.visitCount;
+    }
+
+    public LocalDate getLastVisitDate() {
+        return this.lastVisitDate;
+    }
+
+    public void processVisite() {
+        this.visitCount++;
         this.lastVisitDate = LocalDate.now();
     }
 

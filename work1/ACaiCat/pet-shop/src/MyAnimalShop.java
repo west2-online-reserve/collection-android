@@ -9,8 +9,20 @@ public class MyAnimalShop implements AnimalShop {
     protected ArrayList<Customer> visitedCustomers;
     protected boolean open;
 
+    public MyAnimalShop(double balance, ArrayList<Animal> stockAnimals) {
+        this.balance = balance;
+        this.stockAnimals = stockAnimals;
+        this.visitedCustomers = new ArrayList<>();
+        this.open = true;
+        this.todayProfit = 0.0;
+    }
+
     public boolean isOpen() {
         return this.open;
+    }
+
+    public void setOpen(boolean open) {
+        this.open = open;
     }
 
     public ArrayList<Animal> getStockAnimals() {
@@ -19,10 +31,6 @@ public class MyAnimalShop implements AnimalShop {
 
     public ArrayList<Customer> getVisitedCustomers() {
         return this.visitedCustomers;
-    }
-
-    public void setOpen(boolean open) {
-        this.open = open;
     }
 
     public double getBalance() {
@@ -45,15 +53,6 @@ public class MyAnimalShop implements AnimalShop {
     public void processCost(double amount) {
         this.balance -= amount;
         this.todayProfit -= amount;
-    }
-
-
-    public MyAnimalShop(double balance, ArrayList<Animal> stockAnimals) {
-        this.balance = balance;
-        this.stockAnimals = stockAnimals;
-        this.visitedCustomers = new ArrayList<>();
-        this.open = true;
-        this.todayProfit = 0.0;
     }
 
     @Override
