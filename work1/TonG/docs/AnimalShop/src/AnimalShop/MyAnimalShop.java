@@ -36,8 +36,30 @@ public class MyAnimalShop implements AnimalShop {
 
     @Override
     public void treatCostumer(Customer C) {
-        Customers.add(C);
-        C.count++;
+        if(isOff()) { //店里有没有关门？
+            System.out.println(C.name+"来到了门口");
+            System.out.println("但是现在已经关门了...");
+            System.out.println("——————————————————————————————————————");
+        }
+        else{
+
+            boolean isNew = true;
+
+            for(Customer c:Customers) { //检测重复顾客（不会有重名的吧
+                if(c.name.equals(C.name)){
+                    isNew = false;
+                    break;
+                }
+            }
+
+         if(isNew) {
+             System.out.println("欢迎新顾客~@"+C.name);
+             System.out.println("——————————————————————————————————————");
+             Customers.add(C);
+         }
+            C.count++;
+            C.date=date;
+        }
     }
 
     public void saleAnimal(Animal a) {
@@ -46,7 +68,8 @@ public class MyAnimalShop implements AnimalShop {
 
         Animals.remove(temp);
 
-        System.out.println("卖出的动物信息为：");
+        System.out.println("一只小动物离开了我们店：");
+        System.out.println("它的信息是：");
         System.out.println((a.toString()));
         System.out.print("你获得了"+a.cost+"元\n");
 
@@ -72,7 +95,7 @@ public class MyAnimalShop implements AnimalShop {
 
     public void setOn(boolean on) {
         if(isOff()) {
-            System.out.println("关门啦！");
+            System.out.println("周天了，关门啦！");
             System.out.println("店里的动物有：");
             for (int i = 0; i < Animals.size(); i++) {
                 Animal s = Animals.get(i);
@@ -91,6 +114,10 @@ public class MyAnimalShop implements AnimalShop {
 
             System.out.println("你本周的收入是");
             System.out.println(Profit);
+            System.out.println("——————————————————————————————————————");
+        }
+        else{
+            System.out.println("工作日，打工了！");
             System.out.println("——————————————————————————————————————");
         }
     }

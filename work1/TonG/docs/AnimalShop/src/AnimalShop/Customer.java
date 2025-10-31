@@ -27,10 +27,8 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "name='" + name + '\'' +
-                ", count=" + count +
-                ", date=" + date +
-                '}';
+        return (name+"的到店次数是:"+count+"\n"
+        +"最新到店时间为:"+date.toString()+"\n——————————————————————————————————————"
+        );
     }
 }
