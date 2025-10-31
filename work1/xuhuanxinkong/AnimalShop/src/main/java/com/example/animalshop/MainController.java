@@ -28,6 +28,9 @@ public class MainController implements Initializable {
     private Button enterBtn;
 
     @FXML
+    private Button openBtn;
+
+    @FXML
     private VBox functionsBox;
 
     @FXML
@@ -54,6 +57,7 @@ public class MainController implements Initializable {
 
 
     private Main1 main1;
+
 
     public void setMain1(Main1 main1) {
         this.main1 = main1;
@@ -85,8 +89,14 @@ public class MainController implements Initializable {
     private void onEnterButtonClick() {
         boolean isVisible = functionsBox.isVisible();
         functionsBox.setVisible(!isVisible);
+        openBtn.setVisible(isVisible);
         enterBtn.setText(isVisible ? "进入宠物店管理系统" : "收起功能区");
     }
+
+    public void onEntClick(){
+        onEnterButtonClick();
+    }
+
 
     @FXML
     private void onBuyAnimalClick() throws IOException {
@@ -238,6 +248,23 @@ public class MainController implements Initializable {
 
         outputArea.setText(sb.toString());
     }
+    @FXML
+    private void onOpenBusinessClick() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("=== 开业 ===\n");
+        MyAnimalShop petShop = main1.getPetShop();
+        try {
+            petShop.openBusiness();
+            sb.append("✅ 开业成功！\n");
+            sb.append("当前余额: ").append(petShop.getBalance()).append("元\n");
+
+        } catch (Exception e) {
+            sb.append("❌ 开业失败: ").append(e.getMessage()).append("\n");
+        }
+
+        outputArea.setText(sb.toString());
+    }
+
 
 
     // 设置按钮悬停效果

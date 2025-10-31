@@ -199,6 +199,7 @@ public class BuyController {
 
     public void onBackButtonClick(ActionEvent actionEvent) throws IOException {
         main1.switchToMain();
+
     }
 
     public void onIsClick(ActionEvent actionEvent) {

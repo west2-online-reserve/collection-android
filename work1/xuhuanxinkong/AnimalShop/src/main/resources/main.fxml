@@ -20,6 +20,14 @@
         </font>
     </Button>
 
+    <Button fx:id="openBtn" mnemonicParsing="false" onAction="#onOpenBusinessClick" text="开业"
+            style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 12px 24px;
+             -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 8px;" visible="false">
+        <font>
+            <Font name="System Bold" size="16.0" />
+        </font>
+    </Button>
+
     <!-- 功能区容器 -->
     <VBox fx:id="functionsBox" spacing="10" style="-fx-alignment: center;
      -fx-padding: 15; -fx-background-color: white; -fx-background-radius: 10px;

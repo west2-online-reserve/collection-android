@@ -98,10 +98,17 @@ public class MyAnimalShop implements AnimalShop {
             todayCustomers.forEach(System.out::println);
         }
 
-        // 重置今日数据
+//        // 重置今日数据
+//        todayCustomers.clear();
+//        dailyProfit = 0.0;
+//        isInBusiness = true; // 第二天重新开业
+    }
+
+
+    public void openBusiness() {
         todayCustomers.clear();
         dailyProfit = 0.0;
-        isInBusiness = true; // 第二天重新开业
+        isInBusiness = true;
     }
 
     // Get方法
