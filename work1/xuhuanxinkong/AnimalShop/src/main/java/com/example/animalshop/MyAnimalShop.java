@@ -21,6 +21,8 @@ public class MyAnimalShop implements AnimalShop {
         this.dailyProfit = 0.0;
     }
 
+
+
     /**
      * 买入动物
      */
@@ -104,12 +106,10 @@ public class MyAnimalShop implements AnimalShop {
 
     // Get方法
     public double getBalance() {
-        return balance;
+        return this.balance;
     }
 
-    public List<Animal> getAnimalList() {
-        return new ArrayList<>(animalList);
-    }
+    public List<Animal> getAnimalList() {return new ArrayList<>(animalList);}
 
     public List<Customer> getCustomerList() {
         return new ArrayList<>(customerList);

@@ -1,15 +1,26 @@
 package com.example.animalshop;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceDialog;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
+    @FXML
+    public VBox buyContainer;
     @FXML
     private VBox mainContainer;
 
@@ -40,24 +51,34 @@ public class MainController implements Initializable {
     @FXML
     private Button closeBusinessBtn;
 
-    @FXML
-    private Button buyDogBtn;
 
-    @FXML
-    private Button buyCatBtn;
 
-    private MyAnimalShop petShop;
+    private Main1 main1;
+
+    public void setMain1(Main1 main1) {
+        this.main1 = main1;
+        refreshDisplay();
+        updateOutputArea();
+    }
+
+    public void refreshDisplay() {
+        if (main1 != null && main1.getPetShop() != null) {
+            MyAnimalShop petShop = main1.getPetShop();
+            outputArea.setText("🐾 宠物店实时状态\n\n" +
+                    "目前资金: " + petShop.getBalance() + "元\n" +
+                    "动物数量: " + petShop.getAnimalList().size() + "只\n" );
+
+        }
+    }
+
+
+    private void updateOutputArea() {
+        MyAnimalShop petShop = main1.getPetShop();
+        outputArea.setText("🐾 欢迎使用宠物店管理系统！\n目前资金:"+petShop.getBalance()+"元\n请点击上方按钮开始操作...:");
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // 初始化宠物店
-        petShop = new MyAnimalShop(1000.0);
-
-        // 设置初始文本
-        outputArea.setText("🐾 欢迎使用宠物店管理系统！\n初始资金: 1000.0元\n请点击上方按钮开始操作...");
-
-        // 添加按钮悬停效果
-        setupButtonHoverEffects();
     }
 
     @FXML
@@ -68,59 +89,83 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void onBuyAnimalClick() {
+    private void onBuyAnimalClick() throws IOException {
         StringBuilder sb = new StringBuilder();
         sb.append("=== 买入动物 ===\n");
-
-        try {
-            Animal dog = new ChineseRuralDog("小黑", 2, "公", true);
-            Animal cat = new Cat("咪咪", 1, "母", "白色");
-
-
-            petShop.purchaseAnimal(dog);
-            sb.append("✅ 成功买入: ").append(dog).append("\n");
-
-            petShop.purchaseAnimal(cat);
-            sb.append("✅ 成功买入: ").append(cat).append("\n");
-
-
-
-            sb.append("\n当前余额: ").append(petShop.getBalance()).append("元\n");
-            sb.append("动物数量: ").append(petShop.getAnimalList().size()).append("只");
-
-        } catch (InsufficientBalanceException e) {
-            sb.append("❌ 买入失败: ").append(e.getMessage()).append("\n");
-        } catch (Exception e) {
-            sb.append("❌ 错误: ").append(e.getMessage()).append("\n");
-        }
-
-        outputArea.setText(sb.toString());
+        main1.switchToBuy();
     }
 
     @FXML
     private void onServeCustomerClick() {
+        if (main1 == null || main1.getPetShop() == null) {
+            outputArea.setText("网络连接失败");
+            return;
+        }
+
+        MyAnimalShop petShop = main1.getPetShop();
+
+        // 1. 检查是否有动物可售
+        if (petShop.getAnimalList().isEmpty()) {
+            outputArea.setText("店内没有动物可出售！\n💡 请先买入动物再招待客户");
+            return;
+        }
+        // 2. 输入客户信息
+        TextInputDialog nameDialog = new TextInputDialog();
+        nameDialog.setTitle("招待客户");
+        nameDialog.setHeaderText("请输入客户信息");
+        nameDialog.setContentText("客户姓名:");
+        Optional<String> nameResult = nameDialog.showAndWait();
+
+        if (!nameResult.isPresent() || nameResult.get().isEmpty()) {
+            return;
+        }
+        String customerName = nameResult.get();
+        // 3. 选择要购买的动物
+        List<Animal> animals = petShop.getAnimalList();
+        List<String> animalChoices = new ArrayList<>();
+
+        for (int i = 0; i < animals.size(); i++) {
+            Animal animal = animals.get(i);
+            animalChoices.add((i + 1) + ". " + animal.toString());
+        }
+
+        ChoiceDialog<String> animalDialog = new ChoiceDialog<>(animalChoices.get(0), animalChoices);
+        animalDialog.setTitle("选择动物");
+        animalDialog.setHeaderText("请选择客户要购买的动物");
+        animalDialog.setContentText("动物:");
+        Optional<String> animalResult = animalDialog.showAndWait();
+
+        if (!animalResult.isPresent()) {
+            return;
+        }
+        // 4. 解析选择的动物
+        String selectedAnimal = animalResult.get();
+        int animalIndex = Integer.parseInt(selectedAnimal.split("\\.")[0]) - 1;
+
         StringBuilder sb = new StringBuilder();
         sb.append("=== 招待客户 ===\n");
 
         try {
-            Customer customer1 = new Customer("张三");
-            Customer customer2 = new Customer("李四");
+            Customer customer = new Customer(customerName);
+            Animal selectedAnimalObj = animals.get(animalIndex);
 
-            petShop.serveCustomer(customer1);
-            sb.append("✅ 成功招待客户: ").append(customer1.getName()).append("\n");
+            sb.append("客户: ").append(customerName).append("\n");
+            sb.append("购买动物: ").append(selectedAnimalObj.toString()).append("\n");
+            sb.append("价格: ").append(selectedAnimalObj.getPrice()).append("元\n");
+            sb.append("══════════════════\n");
 
-            petShop.serveCustomer(customer2);
-            sb.append("✅ 成功招待客户: ").append(customer2.getName()).append("\n");
+            // 招待客户（卖出选中的动物）
+            petShop.serveCustomer(customer);
 
-            sb.append("\n当前余额: ").append(petShop.getBalance()).append("元\n");
+            sb.append("交易成功!\n");
+            sb.append("当前余额: ").append(petShop.getBalance()).append("元\n");
             sb.append("剩余动物: ").append(petShop.getAnimalList().size()).append("只\n");
-            sb.append("客户数量: ").append(petShop.getCustomerList().size()).append("位");
+            sb.append("客户总数: ").append(petShop.getCustomerList().size()).append("位");
 
         } catch (AnimalNotFoundException e) {
-            sb.append("❌ 招待失败: ").append(e.getMessage()).append("\n");
-            sb.append("提示：请先买入动物！");
+            sb.append("招待失败: ").append(e.getMessage()).append("\n");
         } catch (Exception e) {
-            sb.append("❌ 错误: ").append(e.getMessage()).append("\n");
+            sb.append("错误: ").append(e.getMessage()).append("\n");
         }
 
         outputArea.setText(sb.toString());
@@ -130,7 +175,7 @@ public class MainController implements Initializable {
     private void onViewAnimalsClick() {
         StringBuilder sb = new StringBuilder();
         sb.append("=== 店内动物列表 ===\n");
-
+        MyAnimalShop petShop = main1.getPetShop();
         var animals = petShop.getAnimalList();
         if (animals.isEmpty()) {
             sb.append("暂无动物\n");
@@ -148,7 +193,7 @@ public class MainController implements Initializable {
     private void onViewCustomersClick() {
         StringBuilder sb = new StringBuilder();
         sb.append("=== 客户列表 ===\n");
-
+        MyAnimalShop petShop = main1.getPetShop();
         var customers = petShop.getCustomerList();
         if (customers.isEmpty()) {
             sb.append("暂无客户记录\n");
@@ -164,6 +209,7 @@ public class MainController implements Initializable {
 
     @FXML
     private void onShopInfoClick() {
+        MyAnimalShop petShop = main1.getPetShop();
         StringBuilder sb = new StringBuilder();
         sb.append("=== 店铺信息 ===\n");
         sb.append("当前余额: ").append(petShop.getBalance()).append("元\n");
@@ -179,7 +225,7 @@ public class MainController implements Initializable {
     private void onCloseBusinessClick() {
         StringBuilder sb = new StringBuilder();
         sb.append("=== 歇业结算 ===\n");
-
+        MyAnimalShop petShop = main1.getPetShop();
         try {
             petShop.closeBusiness();
             sb.append("✅ 歇业成功！\n");
@@ -192,6 +238,7 @@ public class MainController implements Initializable {
 
         outputArea.setText(sb.toString());
     }
+
 
     // 设置按钮悬停效果
     private void setupButtonHoverEffects() {
