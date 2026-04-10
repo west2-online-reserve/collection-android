@@ -3,7 +3,7 @@
 ## 零、开始之前
 
 * 注意，此KMP不是字符串匹配算法，全称为"Kotlin Multiplatform"，是JetBrains开发的一套跨平台开发框架。
-* 由于该框架目前处于开发阶段，IOS端共享UI框架仍为Beta版本，Web端仍为Alpha版本，因此考核主要以Android和Desktop端为主。
+* 该框架目前处于开发阶段，Web端为Beta版本，考核主要以Android和Desktop端为主。
 
 ## 一、知识点
 
