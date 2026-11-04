@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox fx:id="mainContainer" spacing="20" style="-fx-background-color: #f0f8ff;
+" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.animalshop.MainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <!-- 进入按钮 -->
+    <Button fx:id="enterBtn" mnemonicParsing="false" onAction="#onEnterButtonClick" text="进入宠物店管理系统"
+            style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 12px 24px;
+             -fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 8px;">
+        <font>
+            <Font name="System Bold" size="16.0" />
+        </font>
+    </Button>
+
+    <!-- 功能区容器 -->
+    <VBox fx:id="functionsBox" spacing="10" style="-fx-alignment: center;
+     -fx-padding: 15; -fx-background-color: white; -fx-background-radius: 10px;
+      -fx-border-color: #ddd; -fx-border-radius: 10px;" visible="false">
+
+        <!-- 第一行按钮 -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="buyAnimalBtn" mnemonicParsing="false" onAction="#onBuyAnimalClick" text="买入动物"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold;
+                     -fx-padding: 10px 20px; -fx-background-color: #4CAF50;
+                      -fx-text-fill: white; -fx-background-radius: 6px; -fx-min-width: 180px;"/>
+
+            <Button fx:id="serveCustomerBtn" mnemonicParsing="false" onAction="#onServeCustomerClick" text="招待客户"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 20px;
+                     -fx-background-color: #2196F3; -fx-text-fill: white; -fx-background-radius: 6px;
+                      -fx-min-width: 180px;"/>
+        </HBox>
+
+        <!-- 第二行按钮 -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="viewAnimalsBtn" mnemonicParsing="false" onAction="#onViewAnimalsClick" text="查看动物列表"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 20px;
+                     -fx-background-color: #9C27B0; -fx-text-fill: white; -fx-background-radius: 6px;
+                      -fx-min-width: 180px;"/>
+
+            <Button fx:id="viewCustomersBtn" mnemonicParsing="false" onAction="#onViewCustomersClick" text="查看客户列表"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 20px;
+                     -fx-background-color: #FF9800; -fx-text-fill: white; -fx-background-radius: 6px;
+                      -fx-min-width: 180px;"/>
+        </HBox>
+
+        <!-- 第三行按钮 -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="shopInfoBtn" mnemonicParsing="false" onAction="#onShopInfoClick" text="查看店铺信息"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 20px;
+                     -fx-background-color: #607D8B; -fx-text-fill: white; -fx-background-radius: 6px;
+                      -fx-min-width: 180px;"/>
+
+            <Button fx:id="closeBusinessBtn" mnemonicParsing="false" onAction="#onCloseBusinessClick" text="歇业结算"
+                    style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 10px 20px;
+                     -fx-background-color: #F44336; -fx-text-fill: white; -fx-background-radius: 6px;
+                      -fx-min-width: 180px;"/>
+        </HBox>
+
+    </VBox>
+
+    <!-- 输出区域 -->
+    <TextArea fx:id="outputArea" editable="false" wrapText="true" prefHeight="400"
+              style="-fx-font-size: 13px; -fx-font-family: 'Arial'; -fx-background-color: white;
+               -fx-border-color: #ddd; -fx-border-radius: 8px; -fx-background-radius: 8px; -fx-padding: 10px;">
+    </TextArea>
+</VBox>
